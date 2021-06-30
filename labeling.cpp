@@ -3,7 +3,7 @@
 
 using namespace cv;
 
-int main(int argc, char** argv) {
+int main() {
     cv::Mat image, realce;
     int width, height;
     int nobjects;
@@ -107,7 +107,6 @@ int main(int argc, char** argv) {
     std::cout << "A figura tem " << nobjects << " bolhas\n";
     std::cout << "Dessas bolhas " << nburacos << " possuiam buracos\n";
     cv::imshow("image", image);
-    cv::imwrite("labeling.png", image);
     cv::waitKey();
     return 0;
 }
