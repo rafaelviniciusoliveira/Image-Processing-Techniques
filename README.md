@@ -107,7 +107,17 @@ E conseguiremos como resultado:
 
 ### Terceiro Tutorial
 
-O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde foram colocados labels na seguintte imagem:
+O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde, por meio de um algoritmo, foram colocados labels na seguinte imagem:
+
+![bolhas](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/bolhas.png) 
+
+O resultado obtido foi:
+
+![labels](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/labeling.png)
+
+Como podemos observar, cada região com cor branca foi pintada com um tom de cinza diferente, representando os rótulos. Porém existe um problema. Se a imagem possuir mais de 255 regiões, não existirão tons de cinzas suficientes para rotular cada uma dessas regiões, faz-se necessário o uso de uma tecnica diferente para de rotular as bolhas. Uma possivel solução seria usar tons RGB, assim poderemos ter 255x255x255 opções de cores distintas.
+
+Um exercicio de aprimoramento foi proposto. O objetivo, agora, é que o algoritmo possa reconhecer regiões com buracos internos, não levando em conta as bolhas que tocam a borda da imagem.
 
 
 
