@@ -105,4 +105,10 @@ E conseguiremos como resultado:
 
 ![troca de quadrantes](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/trocaregioes.png) 
 
+### Terceiro Tutorial
+
+O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde foram colocados labels na seguintte imagem:
+
+
+
 
