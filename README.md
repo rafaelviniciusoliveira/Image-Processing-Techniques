@@ -14,7 +14,7 @@ Para que isso seja feito, é necessário ler os pontos escolhidos, e através de
 using namespace cv;
 using namespace std;
 
-int main(int, char**) {
+int main() {
     cv::Mat image;
 
     int X1, Y1, X2, Y2;
@@ -436,7 +436,7 @@ void printmask(cv::Mat& m) {
     }
 }
 
-int main(int, char**) {
+int main() {
     cv::VideoCapture cap;  // open the default camera
     float media[] = { 0.1111, 0.1111, 0.1111, 0.1111, 0.1111,
                      0.1111, 0.1111, 0.1111, 0.1111 };
