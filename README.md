@@ -6,7 +6,7 @@
 O primeiro tutorial realizado se resume a escolher uma região delimitada por dois pontos e torna-la negativa. Isso significa inverter a tonalidade de cinza da imagem.
 Para que isso seja feito, é necessário ler os pontos escolhidos, e através de um duplo-for percorrer os pixels da região, trocando a tonalidade dos mesmos por seu negativo. Lembrando que o negativo de um tom X é dado por 255 - X.
 
-```C++
+{% highlight c++ %}
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -44,7 +44,7 @@ int main(int, char**) {
 
     return 0;
 }
-```
+}); {% endhighlight %}
 
 Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtivemos:
 
