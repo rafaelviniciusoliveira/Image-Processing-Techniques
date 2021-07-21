@@ -52,6 +52,7 @@ Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtive
 
 
 ![negativo](/img/regions.png)
+###### Figura 1: Negativo da imagem.
 
 ### Segundo Tutorial
 
@@ -105,17 +106,20 @@ int main() {
 E conseguiremos como resultado: 
 
 
-![troca de quadrantes](/img/trocaregioes.png) 
+![troca de quadrantes](/img/trocaregioes.png)
+###### Figura 2: Troca de quadrantes.
 
 ### Terceiro Tutorial
 
 O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde, por meio de um algoritmo, foram colocados labels na seguinte imagem:
 
-![bolhas](/img/bolhas.png) 
+![bolhas](/img/bolhas.png)
+###### Figura 3: Bolhas.
 
 O resultado obtido foi:
 
 ![labels](/img/labeling.png)
+###### Figura 4: Labels.
 
 Como podemos observar, cada região com cor branca foi pintada com um tom de cinza diferente, representando os rótulos. Porém existe um problema. Se a imagem possuir mais de 255 regiões, não existirão tons de cinzas suficientes para rotular cada uma dessas regiões, faz-se necessário o uso de uma tecnica diferente para de rotular as bolhas. Uma possivel solução seria usar tons RGB, assim poderemos ter 255x255x255 opções de cores distintas.
 
@@ -246,13 +250,167 @@ int main() {
 {% endhighlight %}
 
 ![bolhas sem buracos](/img/bolhasburacos.png) 
+###### Figura 5: Bolhas sem buracos.
 
 ### Quarto Tutorial
 
 No quarto tutorial foi pedido que utilizassemos a equalização para observar a difereça e o comportamento resultante nos histogramas da imagem.
 O código utilizado para a criação do histograma equalizado é mostrado a seguir.
     
+{% highlight c++ %}
+#include <iostream>
+#include <opencv2/opencv.hpp>
 
+int main() {
+    cv::Mat image;
+    int width, height;
+    cv::VideoCapture cap;
+    std::vector<cv::Mat> planes;
+    cv::Mat hist;
+    int nbins = 64;
+    float range[] = { 0, 255 };
+    const float* histrange = { range };
+    bool uniform = true;
+    bool acummulate = true;
+    int key;
+
+    cap.open(1);
+
+    if (!cap.isOpened()) {
+        std::cout << "cameras indisponiveis";
+        return -1;
+    }
+
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+    width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+    height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+    std::cout << "largura = " << width << std::endl;
+    std::cout << "altura  = " << height << std::endl;
+
+    int histw = nbins, histh = nbins / 2;
+    cv::Mat histImg(histh, histw, CV_8UC3, cv::Scalar(0, 0, 0));
+
+    while (1) {
+        cap >> image;
+        cv::split(image, planes);
+        cv::calcHist(&planes[0], 1, 0, cv::Mat(), hist, 1, &nbins, &histrange, uniform, acummulate);
+
+        cv::normalize(hist, hist, 0, histImg.rows, cv::NORM_MINMAX, -1, cv::Mat());
+    
+        histImg.setTo(cv::Scalar(0));
+
+        for (int i = 0; i < nbins; i++) {
+            cv::line(histImg,
+                cv::Point(i, histh),
+                cv::Point(i, histh - cvRound(hist.at<float>(i))),
+                cv::Scalar(0, 0, 255), 1, 8, 0);
+        }
+        histImg.copyTo(image(cv::Rect(0, 0, nbins, histh)));
+        cv::imshow("image", image);
+        key = cv::waitKey(30);
+        if (key == 27) break;
+    }
+    return 0;
+}
+{% endhighlight %}
+
+Em seguida, temos como resultado a imagem e seu histograma.
+    
+![imagem equalizada](/img/equalizada.png)
+###### Figura 6: Histograma equalizado.
+
+Agora, também utilizando o histograma, foi desenvolvido um motion detector. 
+Para desenvolver esse sistema, foi necessário criar dois histogramas, um original e outro que armazena o histograma anterior na escala de tempo. E ao utilizarmos a função compareHist() do OpenCV, obtemos a diferença entre os dois histogramas. Caso a diferença seja maior que um limite pré-estabelecido, será um indicativo que houve um movimento na imagem. 
+Para indicar o movimento, foi criado um retangulo que possui cor vermelha quando não existe movimento na imagem, e verde quando alguma diferença significativa nos histogramas é detectada.
+
+O código em C++ é mostrado a seguir.
+
+{% highlight c++ %}
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <cstdlib>
+#include <cmath>
+
+int main() {
+    cv::Mat image;
+    int width, height;
+    cv::VideoCapture cap;
+    std::vector<cv::Mat> planes;
+    cv::Mat hist;
+    int nbins = 64;
+    float range[] = { 0, 255 };
+    const float* histrange = { range };
+    bool uniform = true;
+    bool acummulate = false;
+    int key;
+    cap.open(1);
+
+    if (!cap.isOpened()) {
+        std::cout << "cameras indisponiveis";
+        return -1;
+    }
+
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+    width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+    height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+    std::cout << "largura = " << width << std::endl;
+    std::cout << "altura  = " << height << std::endl;
+
+    int histw = nbins, histh = nbins / 2;
+    cv::Mat histImg(histh, histw, CV_8UC3, cv::Scalar(0, 0, 0));
+    cv::Mat led(histh, histw, CV_8UC3, cv::Scalar(0, 0, 0));
+    cv::Mat hist2;
+    cap >> image;
+
+    cv::split(image, planes);
+    cv::calcHist(&planes[0], 1, 0, cv::Mat(), hist2, 1, &nbins, &histrange, uniform, acummulate);
+    cv::normalize(hist2, hist2, 0, histImg.rows, cv::NORM_MINMAX, -1, cv::Mat());
+    
+
+    while (1) {
+        cap >> image;
+        cv::split(image, planes);
+        cv::calcHist(&planes[0], 1, 0, cv::Mat(), hist, 1, &nbins, &histrange, uniform, acummulate);
+        cv::normalize(hist, hist, 0, histImg.rows, cv::NORM_MINMAX, -1, cv::Mat());
+        histImg.setTo(cv::Scalar(0));
+
+        led.setTo(cv::Scalar(0, 0, 255));
+        led.copyTo(image(cv::Rect(0, histh, nbins, histh)));
+
+        double dif = cv::compareHist(hist, hist2, 0);
+        std::cout << dif << std::endl;
+
+        if (dif < 0.995) {
+            led.setTo(cv::Scalar(0, 255, 0));
+            led.copyTo(image(cv::Rect(0, histh, nbins, histh)));
+            std::cout << abs(dif) << std::endl;
+        }
+
+        cv::calcHist(&planes[0], 1, 0, cv::Mat(), hist2, 1, &nbins, &histrange, uniform, acummulate);
+        cv::normalize(hist2, hist2, 0, histImg.rows, cv::NORM_MINMAX, -1, cv::Mat());
+
+        for (int i = 0; i < nbins; i++) {
+            cv::line(histImg,
+                cv::Point(i, histh),
+                cv::Point(i, histh - cvRound(hist.at<float>(i))),
+                cv::Scalar(255, 0, 0), 1, 8, 0);
+        }
+        histImg.copyTo(image(cv::Rect(0, 0, nbins, histh)));
+        cv::imshow("image", image);
+        key = cv::waitKey(30);
+        if (key == 27) break;
+    }
+    return 0;
+}
+{% endhighlight %}
+    
 
 
 
