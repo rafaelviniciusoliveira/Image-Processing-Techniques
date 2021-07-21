@@ -56,7 +56,7 @@ Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtive
 O segundo tutorial se trata da troca do primeio quadrante com o tercediro quadrante da imagem, e do segundo quadrante com o quarto quadrante.
 Para que isso seja feito, de forma simples, basta varrer todos os pixels da imagem e verificar se ele esta no primeiro ou segundo quadrante da imagem. Possuindo essa informação, precisamos fazer a troca com o pixel que se encontra na exata posição do quadrante correspondente. Por exemplo: Se um pixel P com coordenadas (x,y) se encontra no primeiro quadrante, o pixel correspondente do terceiro quadrante será (x - (tamanhodaimagem/2) , y + (tamanhodaimagem/2)). Fazemos isso para todos os pixels da imagem utilizando o seguinte código:
 
-```C++
+{% highlight c++ %}
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -98,7 +98,7 @@ int main(int, char**) {
 
     return 0;
 }
-```
+{% endhighlight %}
 
 E conseguiremos como resultado: 
 
@@ -127,7 +127,7 @@ Para que esse objetivo fosse conquistado, foi necessário seguir os seguintes pa
 
 O algoritmo desenvolvido para a resolução desse problema e o resultado, respectivamente:
 
-```C++
+{% highlight c++ %}
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -241,7 +241,7 @@ int main() {
     cv::waitKey();
     return 0;
 }
-```
+{% endhighlight %}
 
 ![bolhas sem buracos](/img/bolhasburacos.png) 
 
