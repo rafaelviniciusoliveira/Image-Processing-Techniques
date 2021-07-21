@@ -51,7 +51,8 @@ int main(int, char**) {
 Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtivemos:
 
 
-![negativo](/img/regions.png)###### Figura 1: Negativo da imagem.
+![negativo](/img/regions.png)
+###### Figura 1: Negativo da imagem.
 
 ### Segundo Tutorial
 
@@ -105,17 +106,20 @@ int main() {
 E conseguiremos como resultado: 
 
 
-![troca de quadrantes](/img/trocaregioes.png) 
+![troca de quadrantes](/img/trocaregioes.png)
+###### Figura 2: Troca de quadrantes.
 
 ### Terceiro Tutorial
 
 O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde, por meio de um algoritmo, foram colocados labels na seguinte imagem:
 
-![bolhas](/img/bolhas.png) 
+![bolhas](/img/bolhas.png)
+###### Figura 3: Bolhas.
 
 O resultado obtido foi:
 
 ![labels](/img/labeling.png)
+###### Figura 4: Labels.
 
 Como podemos observar, cada região com cor branca foi pintada com um tom de cinza diferente, representando os rótulos. Porém existe um problema. Se a imagem possuir mais de 255 regiões, não existirão tons de cinzas suficientes para rotular cada uma dessas regiões, faz-se necessário o uso de uma tecnica diferente para de rotular as bolhas. Uma possivel solução seria usar tons RGB, assim poderemos ter 255x255x255 opções de cores distintas.
 
@@ -246,6 +250,7 @@ int main() {
 {% endhighlight %}
 
 ![bolhas sem buracos](/img/bolhasburacos.png) 
+###### Figura 5: Bolhas sem buracos.
 
 ### Quarto Tutorial
 
@@ -314,6 +319,7 @@ int main() {
 Em seguida, temos como resultado a imagem e seu histograma.
     
 ![imagem equalizada](/img/equalizada.png)
+###### Figura 6: Histograma equalizado.
 
 Agora, também utilizando o histograma, foi desenvolvido um motion detector. 
 Para desenvolver esse sistema, foi necessário criar dois histogramas, um original e outro que armazena o histograma anterior na escala de tempo. E ao utilizarmos a função compareHist() do OpenCV, obtemos a diferença entre os dois histogramas. Caso a diferença seja maior que um limite pré-estabelecido, será um indicativo que houve um movimento na imagem. 
