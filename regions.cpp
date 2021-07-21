@@ -4,7 +4,7 @@
 using namespace cv;
 using namespace std;
 
-int main(int, char**) {
+int main() {
     cv::Mat image;
 
     int X1, Y1, X2, Y2;
