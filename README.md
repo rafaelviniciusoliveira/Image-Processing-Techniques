@@ -44,7 +44,7 @@ int main(int, char**) {
 
     return 0;
 }
-}); {% endhighlight %}
+{% endhighlight %}
 
 Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtivemos:
 
