@@ -58,7 +58,7 @@ Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtive
 O segundo tutorial se trata da troca do primeio quadrante com o tercediro quadrante da imagem, e do segundo quadrante com o quarto quadrante.
 Para que isso seja feito, de forma simples, basta varrer todos os pixels da imagem e verificar se ele esta no primeiro ou segundo quadrante da imagem. Possuindo essa informação, precisamos fazer a troca com o pixel que se encontra na exata posição do quadrante correspondente. Por exemplo: Se um pixel P com coordenadas (x,y) se encontra no primeiro quadrante, o pixel correspondente do terceiro quadrante será (x - (tamanhodaimagem/2) , y + (tamanhodaimagem/2)). Fazemos isso para todos os pixels da imagem utilizando o seguinte código:
 
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -100,7 +100,7 @@ int main() {
 
     return 0;
 }
-{% endhighlight %}
+~~~
 
 E conseguiremos como resultado: 
 
@@ -132,7 +132,7 @@ Para que esse objetivo fosse conquistado, foi necessário seguir os seguintes pa
 
 O algoritmo desenvolvido para a resolução desse problema e o resultado, respectivamente:
 
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -246,7 +246,7 @@ int main() {
     cv::waitKey();
     return 0;
 }
-{% endhighlight %}
+~~~
 
 ![bolhas sem buracos](/img/bolhasburacos.png) 
 ###### Figura 5: Bolhas sem buracos.
@@ -256,7 +256,7 @@ int main() {
 No quarto tutorial foi pedido que utilizassemos a equalização para observar a difereça e o comportamento resultante nos histogramas da imagem.
 O código utilizado para a criação do histograma equalizado é mostrado a seguir.
     
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -313,7 +313,7 @@ int main() {
     }
     return 0;
 }
-{% endhighlight %}
+~~~
 
 Em seguida, temos como resultado a imagem e seu histograma.
     
@@ -326,7 +326,7 @@ Para indicar o movimento, foi criado um retangulo que possui cor vermelha quando
 
 O código em C++ é mostrado a seguir.
 
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -408,7 +408,7 @@ int main() {
     }
     return 0;
 }
-{% endhighlight %}
+~~~
 
 A seguir, esta a imagem referente a ausencia de movimento e a imagem no instante do movimento.
     
@@ -422,7 +422,7 @@ A seguir, esta a imagem referente a ausencia de movimento e a imagem no instante
 O quinto tutorial consiste em implementar o filtro no dominio espacial utilizando o laplaciano do gaussiano.
 O código em c++ e o resultado são mostrados abaixo.
 
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -531,7 +531,7 @@ int main() {
     }
     return 0;
 }
-{% endhighlight %}   
+~~~   
     
 ![Resultado do laplaciano do gaussiano](/img/lapgauss.png)
 ###### Figura 9: Resultado da filtragem utilizando o laplaciano do gaussiano.
@@ -539,7 +539,7 @@ int main() {
 ### Sexto Tutorial
 O objetivo do sexto tutorial é simular o efeito do tilt-shift. Primeiramente foi desenvolvido o método para uma imagem.
 
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <cstdio>
 #include <opencv2/opencv.hpp>
@@ -628,7 +628,7 @@ int main() {
     imwrite("original.jpg", image1);
     return 0;
 }
-{% endhighlight %} 
+~~~
 
 ![Imagem original](/img/original.jpg)
 ###### Figura 10: Imagem original.
@@ -638,7 +638,7 @@ int main() {
 
 Em seguida, foi implementado o método de tilt-shift para um vídeo. O código em c++ é mostrado abaixo.
     
-{% highlight c++ %}
+~~~c++
 #include <iostream>
 #include <cstdio>
 #include <opencv2/opencv.hpp>
@@ -749,4 +749,4 @@ int main() {
     cv::destroyAllWindows();
     return 0;
 }
-{% endhighlight %} 
+~~~
