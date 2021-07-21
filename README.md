@@ -535,9 +535,9 @@ int main8(int, char**) {
 {% endhighlight %}   
     
 ![Resultado do laplaciano do gaussiano](/img/lapgauss.png)
-######Figura 9: Resultado da filtragem utilizando o laplaciano do gaussiano.
+###### Figura 9: Resultado da filtragem utilizando o laplaciano do gaussiano.
 
-###Sexto Tutorial
+### Sexto Tutorial
 O objetivo do sexto tutorial é simular o efeito do tilt-shift. Primeiramente foi desenvolvido o método para uma imagem.
 
 {% highlight c++ %}
@@ -632,10 +632,10 @@ int main9() {
 {% endhighlight %} 
 
 ![Imagem original](/img/original.jpg)
-######Figura 10: Imagem original.
+###### Figura 10: Imagem original.
 
 ![Resultado do tilt-shift](/img/desfocada.jpg)
-######Figura 11: Resultado do tilt-shift.
+###### Figura 11: Resultado do tilt-shift.
 
 Em seguida, foi implementado o método de tilt-shift para um vídeo. O código em c++ é mostrado abaixo.
     
