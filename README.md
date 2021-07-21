@@ -52,6 +52,7 @@ Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtive
 
 
 ![negativo](/img/regions.png)
+###### Figura 1: Negativo da imagem.
 
 ### Segundo Tutorial
 
