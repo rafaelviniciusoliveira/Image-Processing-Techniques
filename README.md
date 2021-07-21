@@ -65,7 +65,7 @@ Para que isso seja feito, de forma simples, basta varrer todos os pixels da imag
 using namespace cv;
 using namespace std;
 
-int main(int, char**) {
+int main() {
     cv::Mat image;
 
     uchar aux1;
