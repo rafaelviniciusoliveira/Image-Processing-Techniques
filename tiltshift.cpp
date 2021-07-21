@@ -43,7 +43,7 @@ void on_trackbar_line(int, void*) {
     on_trackbar_blend(alfa_slider, 0);
 }
 
-int main9() {
+int main() {
     image1 = cv::imread("C:\\opencv\\sources\\samples\\data\\butterfly.jpg");
     image1.copyTo(image2);
     cv::namedWindow("addweighted", 1);
