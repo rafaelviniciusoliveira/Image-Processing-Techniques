@@ -51,8 +51,7 @@ int main(int, char**) {
 Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtivemos:
 
 
-![negativo](/img/regions.png)
-###### Figura 1: Negativo da imagem.
+![negativo](/img/regions.png)###### Figura 1: Negativo da imagem.
 
 ### Segundo Tutorial
 
