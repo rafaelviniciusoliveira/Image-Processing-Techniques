@@ -436,7 +436,7 @@ void printmask(cv::Mat& m) {
     }
 }
 
-int main8(int, char**) {
+int main(int, char**) {
     cv::VideoCapture cap;  // open the default camera
     float media[] = { 0.1111, 0.1111, 0.1111, 0.1111, 0.1111,
                      0.1111, 0.1111, 0.1111, 0.1111 };
@@ -586,7 +586,7 @@ void on_trackbar_line(int, void*) {
     on_trackbar_blend(alfa_slider, 0);
 }
 
-int main9() {
+int main() {
     image1 = cv::imread("C:\\opencv\\sources\\samples\\data\\butterfly.jpg");
     image1.copyTo(image2);
     cv::namedWindow("addweighted", 1);
