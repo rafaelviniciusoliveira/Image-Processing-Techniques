@@ -49,7 +49,7 @@ int main(int, char**) {
 Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtivemos:
 
 
-![negativo](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/regions.png)
+![negativo](/img/regions.png)
 
 ### Segundo Tutorial
 
@@ -103,7 +103,7 @@ int main(int, char**) {
 E conseguiremos como resultado: 
 
 
-![troca de quadrantes](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/trocaregioes.png) 
+![troca de quadrantes](/img/trocaregioes.png) 
 
 ### Terceiro Tutorial
 
@@ -113,7 +113,7 @@ O terceiro tutorial tem como objetivo introduzir a contagem e a identificação 
 
 O resultado obtido foi:
 
-![labels](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/labeling.png)
+![labels](/img/labeling.png)
 
 Como podemos observar, cada região com cor branca foi pintada com um tom de cinza diferente, representando os rótulos. Porém existe um problema. Se a imagem possuir mais de 255 regiões, não existirão tons de cinzas suficientes para rotular cada uma dessas regiões, faz-se necessário o uso de uma tecnica diferente para de rotular as bolhas. Uma possivel solução seria usar tons RGB, assim poderemos ter 255x255x255 opções de cores distintas.
 
@@ -243,7 +243,7 @@ int main() {
 }
 ```
 
-![bolhas sem buracos](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/main/img/bolhasburacos.png) 
+![bolhas sem buracos](/img/bolhasburacos.png) 
 
 
 
