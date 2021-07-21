@@ -109,7 +109,7 @@ E conseguiremos como resultado:
 
 O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde, por meio de um algoritmo, foram colocados labels na seguinte imagem:
 
-![bolhas](https://github.com/rafaelviniciusoliveira/tutoriais-pdi/blob/78aa87b94888045db82accdc8d7c7c64ec538df1/img/bolhas.png) 
+![bolhas](/img/bolhas.png) 
 
 O resultado obtido foi:
 
