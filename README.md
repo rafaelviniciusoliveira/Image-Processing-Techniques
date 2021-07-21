@@ -247,6 +247,11 @@ int main() {
 
 ![bolhas sem buracos](/img/bolhasburacos.png) 
 
+### Quarto Tutorial
+
+No quarto tutorial foi pedido que utilizassemos a equalização para observar a difereça e o comportamento resultante nos histogramas da imagem.
+O código utilizado para a criação do histograma equalizado é mostrado a seguir.
+    
 
 
 
