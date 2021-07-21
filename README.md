@@ -410,6 +410,17 @@ int main() {
     return 0;
 }
 {% endhighlight %}
+
+A seguir, esta a imagem referente a ausencia de movimento e a imagem no instante do movimento.
+    
+![imagem equalizada](/img/nomove.png)
+###### Figura 7: Imagem quando não há movimento.
+    
+![imagem equalizada](/img/move.png)
+###### Figura 8: Motion detector quando há movimento.
+    
+### Quinto Tutorial
+
     
 
 
