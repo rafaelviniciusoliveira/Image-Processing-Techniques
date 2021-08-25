@@ -754,7 +754,9 @@ int main() {
 ### Sétimo Tutorial
 O objetivo do sétimo tutorial é utilizar o filtro homomórfico para melhorar a iluminação de uma cena. Esse processo é feito atenuando a iluminância.
 A equação do filtro é mostrada a seguir:
+
 ![Equação do filtro homomórfico](/img/filter.png)
+
 ###### Figura 12: Equação do filtro homomórfico
 
 Os parametros utilizados para ajustar a cen são:
