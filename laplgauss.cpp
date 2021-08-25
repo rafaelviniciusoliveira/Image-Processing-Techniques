@@ -10,7 +10,7 @@ void printmask(cv::Mat& m) {
     }
 }
 
-int main8(int, char**) {
+int main() {
     cv::VideoCapture cap;  // open the default camera
     float media[] = { 0.1111, 0.1111, 0.1111, 0.1111, 0.1111,
                      0.1111, 0.1111, 0.1111, 0.1111 };
