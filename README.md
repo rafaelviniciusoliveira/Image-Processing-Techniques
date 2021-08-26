@@ -1,7 +1,7 @@
 # Processamento Digital de Imagens com Opencv
 ## Tutoriais realizados durante a disciplina de processamento digital de imagens
 
-### Primeiro Tutorial
+### Negativo da imagem
 
 O primeiro tutorial realizado se resume a escolher uma região delimitada por dois pontos e torna-la negativa. Isso significa inverter a tonalidade de cinza da imagem.
 Para que isso seja feito, é necessário ler os pontos escolhidos, e através de um duplo-for percorrer os pixels da região, trocando a tonalidade dos mesmos por seu negativo. Lembrando que o negativo de um tom X é dado por 255 - X.
@@ -53,7 +53,7 @@ Escolhendo a coordenada P1 como (70,70) e a coordenada P2 como (300,300), obtive
 ![negativo](/img/regions.png)
 ###### Figura 1: Negativo da imagem.
 
-### Segundo Tutorial
+### Troca de quadrantes
 
 O segundo tutorial se trata da troca do primeio quadrante com o tercediro quadrante da imagem, e do segundo quadrante com o quarto quadrante.
 Para que isso seja feito, de forma simples, basta varrer todos os pixels da imagem e verificar se ele esta no primeiro ou segundo quadrante da imagem. Possuindo essa informação, precisamos fazer a troca com o pixel que se encontra na exata posição do quadrante correspondente. Por exemplo: Se um pixel P com coordenadas (x,y) se encontra no primeiro quadrante, o pixel correspondente do terceiro quadrante será (x - (tamanhodaimagem/2) , y + (tamanhodaimagem/2)). Fazemos isso para todos os pixels da imagem utilizando o seguinte código:
@@ -108,7 +108,7 @@ E conseguiremos como resultado:
 ![troca de quadrantes](/img/trocaregioes.png)
 ###### Figura 2: Troca de quadrantes.
 
-### Terceiro Tutorial
+### Labeling
 
 O terceiro tutorial tem como objetivo introduzir a contagem e a identificação de regiões na imagem. Foi feito um exemplo em sala de aula onde, por meio de um algoritmo, foram colocados labels na seguinte imagem:
 
@@ -251,7 +251,7 @@ int main() {
 ![bolhas sem buracos](/img/bolhasburacos.png) 
 ###### Figura 5: Bolhas sem buracos.
 
-### Quarto Tutorial
+### Equalização
 
 No quarto tutorial foi pedido que utilizassemos a equalização para observar a difereça e o comportamento resultante nos histogramas da imagem.
 O código utilizado para a criação do histograma equalizado é mostrado a seguir.
@@ -319,6 +319,8 @@ Em seguida, temos como resultado a imagem e seu histograma.
     
 ![imagem equalizada](/img/equalizada.png)
 ###### Figura 6: Histograma equalizado.
+
+### Motion Detector
 
 Agora, também utilizando o histograma, foi desenvolvido um motion detector. 
 Para desenvolver esse sistema, foi necessário criar dois histogramas, um original e outro que armazena o histograma anterior na escala de tempo. E ao utilizarmos a função compareHist() do OpenCV, obtemos a diferença entre os dois histogramas. Caso a diferença seja maior que um limite pré-estabelecido, será um indicativo que houve um movimento na imagem. 
@@ -418,7 +420,7 @@ A seguir, esta a imagem referente a ausencia de movimento e a imagem no instante
 ![imagem equalizada](/img/move.png)
 ###### Figura 8: Motion detector quando há movimento.
     
-### Quinto Tutorial
+### Laplaciano do Gaussiano
 O quinto tutorial consiste em implementar o filtro no dominio espacial utilizando o laplaciano do gaussiano.
 O código em c++ e o resultado são mostrados abaixo.
 
@@ -536,7 +538,7 @@ int main() {
 ![Resultado do laplaciano do gaussiano](/img/lapgauss.png)
 ###### Figura 9: Resultado da filtragem utilizando o laplaciano do gaussiano.
 
-### Sexto Tutorial
+### Tilt-Shift
 O objetivo do sexto tutorial é simular o efeito do tilt-shift. Primeiramente foi desenvolvido o método para uma imagem.
 
 ~~~c++
@@ -751,7 +753,7 @@ int main() {
 }
 ~~~
 
-### Sétimo Tutorial
+### Filtro Homomórfico
 O objetivo do sétimo tutorial é utilizar o filtro homomórfico para melhorar a iluminação de uma cena. Esse processo é feito atenuando a iluminância.
 A equação do filtro é mostrada a seguir:
 
@@ -939,7 +941,7 @@ Resultados:
 ![Filtro homomórfico](/img/filtrohomomorfico.png)
 ###### Figura 15: Filtro homomórfico
 
-### Oitavo Tutorial
+### Filtro de Canny e Pontilhismo
 No oitavo tutorial foi utilizado o filtro de Canny para identificar as bordas e em seguida foi aplicado o pontilhismo.
 Nesse projeto, o objetivo foi criar pontos apenas nas regiões onde estão presentes as bordas.
 - O STEP utilizado foi 2
@@ -1048,7 +1050,7 @@ Resultados:
 ![Pontilhismo aplicado às bordas](/img/cannypontos.png)
 ###### Figura 17: Pontilhismo aplicado às bordas
 
-### Nono Tutorial
+### K-Means
 O último tutorial se trata de utilizar o kmeans para mapear os dados(cores) em um conjunto menor de classes. O objetivo foi verificar o resultado de dez classificações rodando o algoritmo apenas uma única vez e alterando o parametro que define os centros iniciais (foi modificado de MEANS_PP_CENTERS para KMEANS_RANDOM_CENTERS).
 
 ~~~c++
