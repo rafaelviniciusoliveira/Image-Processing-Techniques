@@ -1048,7 +1048,70 @@ Resultados:
 ![Pontilhismo aplicado às bordas](/img/cannypontos.png)
 ###### Figura 17: Pontilhismo aplicado às bordas
 
+### Nono Tutorial
+O último tutorial se trata de utilizar o kmeans para mapear os dados(cores) em um conjunto menor de classes. O objetivo foi verificar o resultado de dez classificações rodando o algoritmo apenas uma única vez e alterando o parametro que define os centros iniciais (foi modificado de MEANS_PP_CENTERS para KMEANS_RANDOM_CENTERS).
 
+~~~c++
+#include <opencv2/opencv.hpp>
+#include <cstdlib>
+#include <opencv2/core/types_c.h>
+
+using namespace cv;
+
+int main( int argc, char** argv ){
+    for(int i = 0; i< 10; i++){
+        int nClusters = 12;
+        Mat rotulos;
+        int nRodadas = 1;
+        Mat centros;
+        char name[15];
+
+        if(argc!=3){
+            exit(0);
+        }
+
+        Mat img = imread( argv[1], IMREAD_COLOR);
+        Mat samples(img.rows * img.cols, 3, CV_32F);
+
+        for( int y = 0; y < img.rows; y++ ){
+            for( int x = 0; x < img.cols; x++ ){
+            for( int z = 0; z < 3; z++){
+                samples.at<float>(y + x*img.rows, z) = img.at<Vec3b>(y,x)[z];
+            }
+            }
+        }
+
+        kmeans(samples,
+                nClusters,
+                rotulos,
+                TermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS, 10000, 0.0001),
+                nRodadas,
+                KMEANS_RANDOM_CENTERS,
+                centros );
+
+
+        Mat rotulada( img.size(), img.type() );
+        for( int y = 0; y < img.rows; y++ ){
+            for( int x = 0; x < img.cols; x++ ){
+            int indice = rotulos.at<int>(y + x*img.rows,0);
+            rotulada.at<Vec3b>(y,x)[0] = (uchar) centros.at<float>(indice, 0);
+            rotulada.at<Vec3b>(y,x)[1] = (uchar) centros.at<float>(indice, 1);
+            rotulada.at<Vec3b>(y,x)[2] = (uchar) centros.at<float>(indice, 2);
+            }
+        }
+        sprintf(name,  "kmeans%d.jpg", i);
+        imwrite(name, rotulada);
+    }
+}
+~~~
+
+O resultado pode ser observado no GIF gerado a partir das 10 imagens de cada classificação.
+
+![10 classificações](/img/gifkmeans.gif)
+
+###### Figura 18: Diferença entre as 10 classificações
+
+As classificações tiveram resultados diferentes porque houve apenas uma repetição do algoritmo, o que faz com que os centros não sejam recalculados e não exista uma aproximação das classificações. Além disso, o parâmetro KMEANS_RANDOM_CENTERS resulta em centros iniciais aleatórios, agravando a discrepância entre as dez classificações, diferentemente da flag KMEANS_PP_CENTERS, que é um método que interage com toda imagem para determinar aonde serão os centros iniciais e em seguida iniciar a convergência.
 
 
 
